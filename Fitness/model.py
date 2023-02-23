@@ -17,15 +17,15 @@ class Model:
 
         for i in range(1, counters[0]):
             img = cv2.imread(f"1/frame{i}.jpg")[:,:,0]
-            img = img.reshape(16950)
-            img_list = np.append(img_list, [img])
-            class_list = np.append(class_list, 1)
+            img = img.reshape(16950) # size of the individual arrays
+            img_list = np.append(img_list, [img]) # appending the image to the list
+            class_list = np.append(class_list, 1) # appending class to the list
 
         for i in range(1, counters[1]):
             img = cv2.imread(f"2/frame{i}.jpg")[:, :, 0]
             img = img.reshape(16950)
             img_list = np.append(img_list, [img])
-            class_list | np.append(class_list, [2])
+            class_list = np.append(class_list, [2])
 
         img_list = img_list.reshape(counters[0] - 1 + counters[1] - 1, 16950)
         self.model.fit(img_list, class_list)
